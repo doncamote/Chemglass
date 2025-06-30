@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <div class="header-title">
+        <ion-icon name="flask-outline" class="title-icon" color="light"></ion-icon>
+        Productos
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let producto of productos" class="animate__animated animate__fadeInUp">
+        <ion-card class="producto-card">
+          <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+
+          <ion-card-header>
+            <ion-card-title>{{ producto.nombre }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>{{ producto.descripcion }}</p>
+            <p><strong>${{ producto.precio | number: '1.0-0' }}</strong></p>
+
+            <ion-button expand="block" color="success" (click)="agregarAlCarrito(producto)">
+              Agregar al carrito
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

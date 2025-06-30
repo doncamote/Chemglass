@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <div class="header-title">
+        <ion-icon name="flask-outline" class="title-icon" color="light"></ion-icon>
+        Chemglass Chile
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Imagen de presentación -->
+  <ion-card class="welcome-card animate__animated animate__fadeIn">
+    <img src="assets/chemglass-lab.jpg" alt="Materiales químicos" class="welcome-img" />
+    <ion-card-header>
+      <ion-card-title>Bienvenido a Chemglass Chile</ion-card-title>
+      <ion-card-subtitle>Productos químicos volumétricos a costo conveniente</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>En Chemglass Chile conectamos a laboratorios, estudiantes, docentes y emprendedores con insumos químicos volumétricos confiables, asequibles y de calidad.</p>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-icon name="rocket-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>Optimiza tu tiempo con envíos a todo Chile</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="flask-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>Productos seleccionados para química analítica y educativa</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="cash-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>Precios justos sin sacrificar precisión ni durabilidad</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="bulb-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>Diseñado para apoyar a proyectos científicos emergentes</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Segmento -->
+  <ion-segment [(ngModel)]="segment" value="home" class="ion-margin-top custom-segment">
+    <ion-segment-button value="home">
+      <ion-label>Inicio</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="productos" (click)="irAProductos()">
+      <ion-label>Productos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Texto adicional -->
+  <div *ngIf="segment === 'home'" class="ion-padding welcome-text">
+    <h2 class="ion-text-center">¿Por qué elegirnos?</h2>
+    <p class="ion-text-justify">
+      Chemglass Chile nace para ofrecer una alternativa confiable y cercana en la adquisición de materiales volumétricos para laboratorios. Nos dirigimos a estudiantes, profesionales, docentes y pequeñas instituciones que buscan eficiencia, buen precio y calidad sin complicaciones.
+    </p>
+    <ul class="benefits-list">
+      <li class="animate__animated animate__fadeInUp animate__delay-1s">
+        <ion-icon name="flask-outline" slot="start" color="primary"></ion-icon>
+        <span><strong>Disponibilidad constante</strong> de matraces, buretas, pipetas y más.</span>
+      </li>
+      <hr>
+      <li class="animate__animated animate__fadeInUp animate__delay-2s">
+        <ion-icon name="chatbubble-ellipses-outline" slot="start" color="secondary"></ion-icon>
+        <span><strong>Atención personalizada</strong> vía correo y redes sociales.</span>
+      </li>
+      <hr>
+      <li class="animate__animated animate__fadeInUp animate__delay-3s">
+        <ion-icon name="school-outline" slot="start" color="tertiary"></ion-icon>
+        <span><strong>Ideal para universidades, colegios y PYMEs científicas.</strong></span>
+      </li>
+    </ul>
+
+
+
+
+    <p class="ion-margin-top ion-text-center">
+      <strong>Haz crecer tu laboratorio, con nosotros.</strong>
+    </p>
+
+    <div class="ion-text-center ion-padding-top">
+      <button mat-raised-button color="accent" class="ir-productos-btn" (click)="irAProductos()">
+        Ver productos
+      </button>
+    </div>
+  </div>
+</ion-content>

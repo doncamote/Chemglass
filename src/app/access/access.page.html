@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Bienvenido a Chemglass Chile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="ion-text-center ion-margin-bottom">
+    <ion-text color="medium">
+      <p class="intro-text">Por favor, inicia sesión o crea una cuenta para explorar la tienda.</p>
+    </ion-text>
+  </div>
+
+  <!-- Segmento para cambiar entre Login y Registro -->
+  <ion-segment [(ngModel)]="segmento" value="login" color="primary">
+    <ion-segment-button value="login">
+      <ion-label>Iniciar Sesión</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="registro">
+      <ion-label>Registrarse</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Login -->
+  <div *ngIf="segmento === 'login'" class="animate__animated animate__fadeIn">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form (submit)="login()" autocomplete="on">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo</mat-label>
+            <input matInput [(ngModel)]="email" name="email" type="email" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [(ngModel)]="password" name="password" type="password" required>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" class="full-width">Ingresar</button>
+
+          <div *ngIf="mensaje" class="ion-text-center ion-margin-top">
+            <ion-text color="danger">{{ mensaje }}</ion-text>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Registro -->
+  <div *ngIf="segmento === 'registro'" class="animate__animated animate__fadeIn">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Crear Cuenta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form (submit)="registrar()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="registro.nombre" name="nombre" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Apellidos</mat-label>
+            <input matInput [(ngModel)]="registro.apellidos" name="apellidos" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput [(ngModel)]="registro.email" name="registroEmail" type="email" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [(ngModel)]="registro.fechaNacimiento" name="fechaNacimiento" type="date" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [(ngModel)]="registro.password" name="registroPassword" type="password"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+" required>
+          </mat-form-field>
+
+          <ion-note class="ion-text-wrap ion-padding-top" color="medium">
+            La contraseña debe incluir al menos una mayúscula, una minúscula y un número.
+          </ion-note>
+
+          <button mat-raised-button color="accent" type="submit" class="full-width ion-margin-top">
+            Registrarse
+          </button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Productos destacados -->
+  <ion-title class="ion-padding-top">Productos destacados</ion-title>
+
+  <ion-card *ngFor="let producto of productos" class="ion-margin-bottom animate__animated animate__fadeInUp">
+    <ion-card-header>
+      <ion-card-title>{{ producto.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ producto.descripcion }}</p>
+      <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,30 @@
+@import "animate.css";
+
+.carrito-vacio {
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--ion-color-medium);
+
+  h2 {
+    margin-bottom: 0.5rem;
+    color: var(--ion-color-dark);
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.title-icon {
+  width: 25px;
+  height: 25px;
+  filter: brightness(10); 
+}
+

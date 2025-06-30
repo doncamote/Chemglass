@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <div class="header-title">
+        <img src="assets/icons/cart.svg" class="title-icon" alt="Carrito">
+        Carrito
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="carrito.length > 0; else vacio">
+    <ion-item *ngFor="let producto of carrito" class="animate__animated animate__fadeInUp">
+      <ion-thumbnail slot="start">
+        <img [src]="producto.imagen" alt="{{ producto.nombre }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ producto.nombre }}</h2>
+        <p>{{ producto.descripcion }}</p>
+        <p>Cantidad: {{ producto.cantidad }}</p>
+        <strong>Total: ${{ producto.precio * producto.cantidad }}</strong>
+      </ion-label>
+    </ion-item>
+
+    <div class="ion-padding-top">
+      <button mat-raised-button color="primary" (click)="comprar()" style="width: 100%;">
+        Comprar
+      </button>
+    </div>
+  </ion-list>
+
+  <ng-template #vacio>
+    <div class="carrito-vacio animate__animated animate__fadeIn">
+      <img src="assets/icon/empty-cart.svg" alt="Carrito vacío" style="width: 150px; margin-bottom: 1rem;">
+      <h2>Tu carrito está vacío</h2>
+      <p>Agrega productos desde la tienda.</p>
+    </div>
+  </ng-template>
+</ion-content>
