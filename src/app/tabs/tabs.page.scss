@@ -3,14 +3,14 @@
     --color: var(--ion-color-medium);
     --color-selected: var(--ion-color-primary);
     flex-direction: column;
-    padding: 4px 0;
+    padding: 6px 0;
     justify-content: center;
     align-items: center;
     text-align: center;
 
     .tab-icon {
-      width: 10px !important;
-      height: 10px !important;
+      width: 24px !important;
+      height: 24px !important;
       margin-bottom: 4px !important;
       display: block !important;
       filter: grayscale(1) brightness(0.7) !important;
@@ -18,8 +18,8 @@
     }
 
     ion-label {
-      font-size: 11px !important;
-      line-height: 1 !important;
+      font-size: 12px !important;
+      line-height: 1.2 !important;
       margin: 0 !important;
       white-space: nowrap;
     }
@@ -32,7 +32,7 @@
 
       ion-label {
         color: var(--ion-color-primary) !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
       }
     }
   }

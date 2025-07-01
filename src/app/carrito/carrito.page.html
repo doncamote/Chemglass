@@ -25,9 +25,10 @@
     </ion-item>
 
     <div class="ion-padding-top">
-      <button mat-raised-button color="primary" (click)="comprar()" style="width: 100%;">
+      <ion-button expand="block" (click)="comprar()" *ngIf="carrito.length > 0">
         Comprar
-      </button>
+      </ion-button>
+
     </div>
   </ion-list>
 

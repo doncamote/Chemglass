@@ -34,3 +34,4 @@ export class ProductsPage {
     this.carritoService.agregar(producto);
   }
 }
+

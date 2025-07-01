@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
   {
     path: 'tabs',
     loadComponent: () => import('./tabs/tabs.page').then(m => m.TabsPage),
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -39,14 +41,17 @@ export const routes: Routes = [
   },
   {
     path: 'carrito',
-    loadComponent: () => import('./carrito/carrito.page').then( m => m.CarritoPage)
+    loadComponent: () => import('./carrito/carrito.page').then(m => m.CarritoPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'agregar',
-    loadComponent: () => import('./pages/agregar/agregar.page').then( m => m.AgregarPage)
+    loadComponent: () => import('./pages/agregar/agregar.page').then(m => m.AgregarPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'modificar',
-    loadComponent: () => import('./pages/modificar/modificar.page').then( m => m.ModificarPage)
+    loadComponent: () => import('./pages/modificar/modificar.page').then(m => m.ModificarPage),
+    canActivate: [AuthGuard]
   }
 ];

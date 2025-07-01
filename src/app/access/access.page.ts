@@ -23,8 +23,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-
-
 @Component({
   selector: 'app-access',
   templateUrl: './access.page.html',
@@ -58,6 +56,14 @@ export class AccessPage implements OnInit {
   mensaje = '';
   segmento = 'login';
 
+  registro = {
+    nombre: '',
+    apellidos: '',
+    email: '',
+    fechaNacimiento: '',
+    password: ''
+  };
+
   productos = [
     { nombre: 'Matraz aforado 100ml', descripcion: 'Vidrio, clase A', precio: 6500 },
     { nombre: 'Pipeta graduada 10ml', descripcion: 'Plástico, uso general', precio: 3200 },
@@ -68,15 +74,7 @@ export class AccessPage implements OnInit {
 
   ngOnInit(): void {}
 
-  registro = {
-    nombre: '',
-    apellidos: '',
-    email: '',
-    fechaNacimiento: '',
-    password: ''
-  };
-
-  registrar() {
+  async registrar() {
     const { nombre, apellidos, email, fechaNacimiento, password } = this.registro;
 
     if (!nombre || !apellidos || !email || !fechaNacimiento || !password) {
@@ -102,33 +100,21 @@ export class AccessPage implements OnInit {
       this.mensaje = 'La fecha de nacimiento no puede ser futura.';
       return;
     }
-    
-    let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
 
-    if (usuarios.find((u: any) => u.email === email)) {
-    this.mensaje = 'Ya existe un usuario registrado con ese correo.';
-    return;
+    const mensaje = await this.servicio.registrarUsuario({ nombre, apellidos, email, fechaNacimiento, password });
+    this.mensaje = mensaje;
+
+    if (mensaje.includes('exitosamente')) {
+      this.registro = { nombre: '', apellidos: '', email: '', fechaNacimiento: '', password: '' };
+    }
   }
 
-    usuarios.push({ nombre, apellidos, email, fechaNacimiento, password });
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  async login() {
+    const resultado = await this.servicio.login(this.email, this.password);
+    this.mensaje = resultado.mensaje;
 
-    this.mensaje = 'Usuario registrado exitosamente.';
-    console.log('Registrando usuario:', this.registro);
-
-    this.registro = { nombre: '', apellidos: '', email: '', fechaNacimiento: '', password: '' };
+    if (resultado.ok) {
+      this.router.navigate(['/tabs/home']);
+    }
   }
-
-  login() {
-  let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-  const usuarioEncontrado = usuarios.find((u: any) => u.email === this.email && u.password === this.password);
-
-  if (usuarioEncontrado) {
-    this.mensaje = 'Ingreso exitoso';
-    this.router.navigate(['/tabs/home']);
-  } else {
-    this.mensaje = 'Credenciales incorrectas';
-  }
-}
 }

@@ -18,9 +18,10 @@ export class CarritoPage {
     private alertController: AlertController
   ) {}
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.carrito = this.carritoService.obtenerCarrito();
   }
+
 
   async comprar() {
     const total = this.carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);

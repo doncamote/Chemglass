@@ -1,5 +1,6 @@
 @import "animate.css";
 
+
 .producto-card {
   transition: transform 0.3s ease;
   border-radius: 16px;
@@ -39,4 +40,8 @@ ion-card-content {
 
 .title-icon {
   font-size: 25px;
+}
+
+ion-toast {
+  z-index: 9999 !important;
 }
