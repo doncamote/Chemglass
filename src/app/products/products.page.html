@@ -1,36 +1,55 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      <div class="header-title">
-        <ion-icon name="flask-outline" class="title-icon" color="light"></ion-icon>
-        Productos
-      </div>
-    </ion-title>
+    <ion-title>Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true" class="ion-padding">
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-md="6" *ngFor="let producto of productos" class="animate__animated animate__fadeInUp">
-        <ion-card class="producto-card">
-          <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+      <ion-col size="12" size-md="6" *ngFor="let producto of productos">
+        <ion-card class="ion-text-center animate__animated animate__fadeInUp">
+
+          <div style="display: flex; justify-content: center; align-items: center; padding: 12px;">
+            <img [src]="producto.imagen"
+                 [alt]="producto.nombre"
+                 style="width: 180px; height: 180px; object-fit: contain;" />
+          </div>
 
           <ion-card-header>
             <ion-card-title>{{ producto.nombre }}</ion-card-title>
+            <ion-card-subtitle>${{ producto.precio | number:'1.0-0' }}</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
             <p>{{ producto.descripcion }}</p>
-            <p><strong>${{ producto.precio | number: '1.0-0' }}</strong></p>
 
-            <ion-button expand="block" color="success" (click)="agregarAlCarrito(producto)">
-              Agregar al carrito
+            <!-- Botón solo para productos químicos -->
+            <ion-button *ngIf="producto.quimico && !producto.infoQuimica"
+                        expand="block"
+                        color="medium"
+                        (click)="obtenerInfoQuimica(producto)">
+              Ver info química
             </ion-button>
+
+            <!-- Mostrar info química si existe -->
+            <div *ngIf="producto.infoQuimica" class="ion-margin-top ion-text-start">
+              <p><strong>Fórmula molecular:</strong> {{ producto.infoQuimica.MolecularFormula }}</p>
+              <p><strong>Peso molecular:</strong> {{ producto.infoQuimica.MolecularWeight }} g/mol</p>
+            </div>
+
+            <div class="ion-margin-top">
+              <ion-button expand="block" color="secondary" (click)="agregarAlCarrito(producto)">
+                Agregar al carrito
+              </ion-button>
+            </div>
+
           </ion-card-content>
+
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
