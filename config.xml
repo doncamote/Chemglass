@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.chemglass.app" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Chemglass</name>
+  <description>Venta online de productos volumétricos y químicos para laboratorios</description>
+  <author email="cri.verap@duocuc.cl" href="">Cristobal Vera</author>
+  <content src="index.html" />
+  <access origin="*" />
+  <preference name="android-minSdkVersion" value="23" />
+  <preference name="android-targetSdkVersion" value="34" />
+  <platform name="android">
+    <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/uses-permission">
+      <uses-permission android:name="android.permission.INTERNET" />
+    </edit-config>
+  </platform>
+</widget>
