@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -11,10 +11,13 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonText,    
+  IonText,
   IonNote,
   IonSegment,
-  IonSegmentButton
+  IonSegmentButton,
+  IonRow,
+  IonCol,
+  IonCardSubtitle
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { MyservicioService } from '../myservicio.service';
@@ -28,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './access.page.html',
   styleUrls: ['./access.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +44,7 @@ import { MatButtonModule } from '@angular/material/button';
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
+    IonCardSubtitle,
     IonText,
     IonNote,
     MatFormFieldModule,
@@ -47,7 +52,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
     IonSegment,
-    IonSegmentButton
+    IonSegmentButton,
+    IonRow,
+    IonCol
   ]
 })
 export class AccessPage implements OnInit {
@@ -65,10 +72,33 @@ export class AccessPage implements OnInit {
   };
 
   productos = [
-    { nombre: 'Matraz aforado 100ml', descripcion: 'Vidrio, clase A', precio: 6500 },
-    { nombre: 'Pipeta graduada 10ml', descripcion: 'Plástico, uso general', precio: 3200 },
-    { nombre: 'Bureta 50ml', descripcion: 'Vidrio con llave PTFE', precio: 9400 }
+    {
+      nombre: 'Matraz aforado 100ml',
+      descripcion: 'Vidrio, clase A',
+      precio: 6500,
+      imagen: 'assets/productos/matraz.jpg'
+    },
+    {
+      nombre: 'Pipeta graduada 10ml',
+      descripcion: 'Plástico, uso general',
+      precio: 3200,
+      imagen: 'assets/productos/pipeta.jpg'
+    },
+    {
+      nombre: 'Bureta 50ml',
+      descripcion: 'Vidrio con llave PTFE',
+      precio: 9400,
+      imagen: 'assets/productos/bureta.jpg'
+    },
+    {
+      nombre: 'Erlenmeyer 250ml',
+      descripcion: 'Vidrio con graduación',
+      precio: 4100,
+      imagen: 'assets/productos/erlenmeyer.png',
+      infoQuimica: null
+    }
   ];
+
 
   constructor(private servicio: MyservicioService, private router: Router) {}
 

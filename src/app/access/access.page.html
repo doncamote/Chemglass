@@ -96,17 +96,32 @@
     </ion-card>
   </div>
 
-  <!-- Productos destacados -->
-  <ion-title class="ion-padding-top">Productos destacados</ion-title>
+<!-- Productos destacados -->
+<ion-title class="ion-padding-top ion-text-center">Productos destacados</ion-title>
 
-  <ion-card *ngFor="let producto of productos" class="ion-margin-bottom animate__animated animate__fadeInUp">
-    <ion-card-header>
-      <ion-card-title>{{ producto.nombre }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{ producto.descripcion }}</p>
-      <p><strong>Precio:</strong> ${{ producto.precio }}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-row>
+  <ion-col size="12" size-md="6" *ngFor="let producto of productos">
+    <ion-card class="ion-text-center animate__animated animate__fadeInUp">
+
+      <!-- Imagen del producto -->
+      <div style="display: flex; justify-content: center; align-items: center; padding: 12px;">
+        <img [src]="producto.imagen"
+             [alt]="producto.nombre"
+             style="width: 180px; height: 180px; object-fit: contain;" />
+      </div>
+
+      <ion-card-header>
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+        <ion-card-subtitle>${{ producto.precio | number:'1.0-0' }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ producto.descripcion }}</p>
+      </ion-card-content>
+
+    </ion-card>
+  </ion-col>
+</ion-row>
+
 
 </ion-content>

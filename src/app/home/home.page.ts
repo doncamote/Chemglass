@@ -24,19 +24,26 @@ export class HomePage {
   ubicacion: string = '...';
   usuario: any = null;
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 500,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    }
+  };
+
   constructor(
     private router: Router,
     private userService: MyservicioService
   ) {}
 
   async ngOnInit() {
-    // Cargar usuario actual
     this.usuario = await this.userService.obtenerUsuarioActual();
 
-    // Cargar imágenes Unsplash
     this.cargarImagenesUnsplash();
 
-    // Si hay usuario logeado, obtener ubicación
     if (this.usuario) {
       this.obtenerUbicacion();
     }
@@ -47,7 +54,6 @@ export class HomePage {
   }
 
   cargarImagenesUnsplash() {
-    // URLs públicas sin clave para demo (query "laboratory")
     this.imagenes = [
       'https://images.unsplash.com/photo-1508385082359-f07e6e0fbd5d?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
@@ -66,7 +72,6 @@ export class HomePage {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
-        // Obtener ciudad con API pública sin clave OpenStreetMap Nominatim
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
         if (!response.ok) {
           this.ubicacion = 'Error al obtener ubicación';

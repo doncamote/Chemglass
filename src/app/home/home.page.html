@@ -90,13 +90,14 @@
       <h3 class="ion-text-center ion-margin-top">Galería Laboratorio</h3>
 
       <div *ngIf="imagenes.length > 0" class="ion-padding">
-        <ion-slides pager="true">
+        <ion-slides [options]="slideOpts" pager="true">
           <ion-slide *ngFor="let img of imagenes">
             <img [src]="img" alt="" style="width: 100%; border-radius: 8px;" />
           </ion-slide>
         </ion-slides>
       </div>
     </div>
+
 
     <!-- Ubicación -->
     <div *ngIf="usuario && ubicacion" class="ion-text-center ion-padding-top">
